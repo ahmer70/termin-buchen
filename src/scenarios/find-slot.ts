@@ -4,6 +4,16 @@ import {Utils} from '../utils';
 import {FirstPageScenario} from './first-page-scenario';
 import {SecondPageScenario} from './second-page-scenario';
 import {ERR_MESSAGE_TIMEOUT} from '../const';
+const player = require('play-sound')();
+function playSoundOsx() {
+  player.play('alarm.wav', (err:any) => {
+    if (err) {
+      console.error('Error playing sound:', err);
+    }
+    
+  });
+}
+
 
 /**
  * Returns true if slot found
@@ -38,6 +48,7 @@ export const findSlot = async (wd: WebDriver): Promise<boolean> => {
         wd,
         By.xpath(`//*[contains(text(),\'Appointment selection\')]`)
       );
+      playSoundOsx()
       console.log(`[findSlot]: found calendar`);
       nextClicked = true;
       return !(await existsErrorBox(wd));
