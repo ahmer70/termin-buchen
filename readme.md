@@ -55,7 +55,7 @@ npm -v
 2. Execute following commands in terminal to install script:
 
 ```bash
-git clone https://github.com/dmitry-kostin/termin-buchen
+# git clone https://github.com/dmitry-kostin/termin-buchen
 cd termin-buchen
 npm i
 ```
