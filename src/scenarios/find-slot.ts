@@ -3,7 +3,7 @@ import {config} from '../config';
 import {Utils} from '../utils';
 import {FirstPageScenario} from './first-page-scenario';
 import {SecondPageScenario} from './second-page-scenario';
-import {ERR_MESSAGE_TIMEOUT} from "../const";
+import {ERR_MESSAGE_TIMEOUT} from '../const';
 
 /**
  * Returns true if slot found
@@ -28,19 +28,45 @@ export const findSlot = async (wd: WebDriver): Promise<boolean> => {
   }
   await SecondPageScenario.selectApplyPurpose(wd, config.purpose);
   await SecondPageScenario.waitForLoadingScreen(wd);
-  await SecondPageScenario.clickNext(wd);
-
-  try {
-    await Utils.waitUntilVisible(
-      wd,
-      By.xpath('//*[contains(text(),\'Appointment selection\')]')
-    );
-    console.log(`[findSlot]: found calendar`);
-    return !await existsErrorBox(wd)
-  } catch (e) {
-    console.error(`[findSlot]: appointment not found ${e}`);
-    return false;
+  // await SecondPageScenario.clickNext(wd);
+  let retryCount = 0;
+  let nextClicked = false;
+  while (!nextClicked && retryCount < 9) {
+    await SecondPageScenario.clickNext(wd);
+    try {
+      await Utils.waitUntilVisible(
+        wd,
+        By.xpath(`//*[contains(text(),\'Appointment selection\')]`)
+      );
+      console.log(`[findSlot]: found calendar`);
+      nextClicked = true;
+      return !(await existsErrorBox(wd));
+    } catch (e) {
+      retryCount++;
+      if (retryCount < 9) {
+        console.error(
+          `[findSlot]: appointment not found ${e} on round ${retryCount}`
+        );
+      } else {
+        nextClicked = false;
+        console.error(`[findSlot]: appointment not found ${e}`);
+        return false;
+      }
+    }
+    
   }
+  return false
+  // try {
+  //   await Utils.waitUntilVisible(
+  //     wd,
+  //     By.xpath("//*[contains(text(),'Appointment selection')]")
+  //   );
+  //   console.log(`[findSlot]: found calendar`);
+  //   return !(await existsErrorBox(wd));
+  // } catch (e) {
+  //   console.error(`[findSlot]: appointment not found ${e}`);
+  //   return false;
+  // }
 };
 
 async function existsErrorBox(wd: WebDriver) {
@@ -53,9 +79,9 @@ async function existsErrorBox(wd: WebDriver) {
     );
     const text = await box.getText();
     console.error(`[findSlot]: messagesBox found. reason: ${text}`);
-    return true
+    return true;
   } catch (e) {
     console.info(`[findSlot]: error finding messagesBox: ${e}`);
-    return false
+    return false;
   }
 }

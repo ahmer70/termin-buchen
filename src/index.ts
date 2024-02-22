@@ -26,7 +26,7 @@ async function runner(
         throw e;
       }
     }
-    console.log(`[runner]: iteration ${i} result: ${found}\n`);
+    console.log(`[runner]: iteration ${i} date:${new Date().toISOString()} result: ${found}\n`);
     if (found) {
       onSuccess();
       return;
