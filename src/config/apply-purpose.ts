@@ -2,12 +2,14 @@
 export const ApplyPurpose = {
   '28p2': 'Permanent settlement permit for family members of German citizens (sect. 28 para. 2)',
   '19c2': 'Residence permit for skilled employment in information and communication technology (sect. 19c para. 2)',
+  'asylum':'Aufenthaltsgestattung - verlängern',
 
   // apply -> family reasons
   '33': 'Residence permit for a newborn foreign child - Initial issuance (section 33)',
   '29-32_blue-card': 'Residence permit for spouses and children of holders of an EU Blue Card (sect. 29-32)',
   '29-32_skilled': 'Residence permit for spouses and children of skilled workers, students, trainees, scientists and teachers (sect. 29-32)',
   '29-34': 'Residence permit for spouses, parents and children of foreign citizens (sect. 29-34)',
+  "29-34g":'Aufenthaltserlaubnis für Ehepartner, Eltern und Kinder von ausländischen Familienangehörigen (§§ 29-34)',
   '28': 'Residence permit for spouses, parents and children of German citizens (sect. 28)',
   '36a': 'Residence permit for spouses, parents and children of persons eligible for subsidiary protection (sect. 36a)',
 
@@ -40,4 +42,7 @@ export const ApplyPurpose = {
   edu_16a_vocational: 'Residence permit for vocational training (sect. 16a)',
   edu_19c_1: 'Residence permit to start a traineeship (sect. 19c para. 1)',
   edu_16f: 'Residence permit to take part in a student exchange or to attend school (sect. 16f)',
+
+  //
+  duldung:'Duldung - verlängern'
 };

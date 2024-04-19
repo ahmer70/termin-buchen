@@ -4,16 +4,15 @@ import {Utils} from '../utils';
 import {FirstPageScenario} from './first-page-scenario';
 import {SecondPageScenario} from './second-page-scenario';
 import {ERR_MESSAGE_TIMEOUT} from '../const';
+import { ThirdPageScenario } from './third-page-scenario';
 const player = require('play-sound')();
 function playSoundOsx() {
-  player.play('alarm.wav', (err:any) => {
+  player.play('alarm.wav', (err: any) => {
     if (err) {
       console.error('Error playing sound:', err);
     }
-    
   });
 }
-
 
 /**
  * Returns true if slot found
@@ -41,20 +40,21 @@ export const findSlot = async (wd: WebDriver): Promise<boolean> => {
   // await SecondPageScenario.clickNext(wd);
   let retryCount = 0;
   let nextClicked = false;
-  while (!nextClicked && retryCount < 9) {
+  while (!nextClicked && retryCount < 30) {
     await SecondPageScenario.clickNext(wd);
     try {
       await Utils.waitUntilVisible(
         wd,
-        By.xpath(`//*[contains(text(),\'Appointment selection\')]`)
+        By.xpath(`//*[contains(text(),\'Auswahl Termin\')]`)
       );
-      playSoundOsx()
+      playSoundOsx();
       console.log(`[findSlot]: found calendar`);
+      await ThirdPageScenario.selectDate(wd)
       nextClicked = true;
       return !(await existsErrorBox(wd));
     } catch (e) {
       retryCount++;
-      if (retryCount < 9) {
+      if (retryCount < 30) {
         console.error(
           `[findSlot]: appointment not found ${e} on round ${retryCount}`
         );
@@ -64,20 +64,8 @@ export const findSlot = async (wd: WebDriver): Promise<boolean> => {
         return false;
       }
     }
-    
   }
-  return false
-  // try {
-  //   await Utils.waitUntilVisible(
-  //     wd,
-  //     By.xpath("//*[contains(text(),'Appointment selection')]")
-  //   );
-  //   console.log(`[findSlot]: found calendar`);
-  //   return !(await existsErrorBox(wd));
-  // } catch (e) {
-  //   console.error(`[findSlot]: appointment not found ${e}`);
-  //   return false;
-  // }
+  return false;
 };
 
 async function existsErrorBox(wd: WebDriver) {
@@ -88,6 +76,7 @@ async function existsErrorBox(wd: WebDriver) {
       By.xpath('//*[@id="messagesBox"]/ul/li'),
       ERR_MESSAGE_TIMEOUT
     );
+    
     const text = await box.getText();
     console.error(`[findSlot]: messagesBox found. reason: ${text}`);
     return true;

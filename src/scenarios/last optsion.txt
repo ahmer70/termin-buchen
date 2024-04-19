@@ -1,0 +1,47 @@
+
+https://otv.verwalt-berlin.de/ams/TerminBuchen/wizardng/6bfb86e1-fcda-4647-b680-e72141f07cdb
+Request Method:
+POST
+Status Code:
+200 OK
+Remote Address:
+141.15.65.248:443
+Referrer Policy:
+strict-origin-when-cross-origin
+
+
+
+
+
+HTTP/1.1 200 OK
+content-type: text/html;charset=UTF-8
+date: Fri, 01 Mar 2024 11:05:40 GMT
+strict-transport-security: max-age=3153600;includeSubDomains;preload
+Set-Cookie: TS012a50e7=01d33437f924dc40791f5bad542a8cc3a0a729f647e1995c49a61bc36e5e2ef61110419c40f2d4e39bb81aa2ff1bcbf1b41535e338; Path=/; Domain=.otv.verwalt-berlin.de
+Transfer-Encoding: 
+
+
+
+
+
+POST /ams/TerminBuchen/wizardng/6bfb86e1-fcda-4647-b680-e72141f07cdb HTTP/1.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Cache-Control: max-age=0
+Connection: keep-alive
+Content-Length: 140
+Content-Type: application/x-www-form-urlencoded
+Cookie: check=valid; check=valid; check=valid; JSESSIONID=BckRPeY63Nvd8dzQ-AsB74gEIfIWlDOL3k_iC5LG.frontend-3; SERVERID=frontend-3; otv_neu=ba85edf50cee7d89980303eb5f4c48da; TS012a50e7=01d33437f924dc40791f5bad542a8cc3a0a729f647e1995c49a61bc36e5e2ef61110419c40f2d4e39bb81aa2ff1bcbf1b41535e338
+Host: otv.verwalt-berlin.de
+Origin: https://otv.verwalt-berlin.de
+Referer: https://otv.verwalt-berlin.de/ams/TerminBuchen
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+sec-ch-ua: "Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "macOS"

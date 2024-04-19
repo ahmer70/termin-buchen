@@ -6,11 +6,11 @@ export class FirstPageScenario {
     await wd.executeScript(`
     document.activeElement.setAttribute('data-can-navigate', '1');
     `);
-    await wd.get('https://otv.verwalt-berlin.de/ams/TerminBuchen?lang=en');
+    await wd.get('https://otv.verwalt-berlin.de/ams/TerminBuchen?lang=de');
     const bookButton = await Utils.waitUntilVisible(
       wd,
       By.xpath(
-        '//a[@href="/ams/TerminBuchen/wizardng?sprachauswahl=en"]'
+        '//a[@href="/ams/TerminBuchen/wizardng?sprachauswahl=de"]'
       )
     );
     await wd.sleep(400);

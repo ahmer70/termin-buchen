@@ -1,7 +1,7 @@
 import {CHECK_INTERVAL} from '../const';
 import {ApplyPurpose} from './apply-purpose';
 
-export type ApplyCategory = 'apply' | 'extend' | 'transfer' | 'apply_permanent';
+export type ApplyCategory = 'apply' | 'extend' | 'transfer' | 'apply_permanent' | 'asylum'|'duldung';
 export type ApplyReason = 'economic' | 'family' | 'educational' | 'empty';
 
 interface Config {
@@ -30,7 +30,9 @@ export const config: Config = (() => {
         process.env.CATEGORY !== 'apply' &&
         process.env.CATEGORY !== 'extend' &&
         process.env.CATEGORY !== 'transfer' &&
-        process.env.CATEGORY !== 'apply_permanent'
+        process.env.CATEGORY !== 'apply_permanent' && 
+        process.env.CATEGORY !== 'asylum'&&
+        process.env.CATEGORY !== 'duldung'
       ) {
         throw new Error('CATEGORY config value is unknown');
       }

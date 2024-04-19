@@ -12,8 +12,8 @@ async function runner(
   onFail: () => void
 ) {
   let found = false;
-  let i = 1;
-  while (!found) {
+  let i = 1; 
+  while (!found&&i < 30) {
     console.log(`[runner]: started iteration ${i}`);
     try {
       found = await findSlot(wd);
@@ -26,11 +26,12 @@ async function runner(
         throw e;
       }
     }
-    console.log(`[runner]: iteration ${i} date:${new Date().toISOString()} result: ${found}\n`);
+    console.log(`[runner]: iteration ${i} date:${new Date().toLocaleString()} result: ${found}\n`);
     if (found) {
       onSuccess();
       return;
     }
+    
     await wd.sleep(config.checkInterval);
     await wd.manage().deleteAllCookies();
     i++;
